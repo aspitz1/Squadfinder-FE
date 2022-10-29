@@ -75,10 +75,9 @@
 
 ## Technologies
   - React Native
+  - Expo
   - Jest Native
   - React Native Testing Library
-  - Expo
-  - VSCode
   - CircleCI
 
 ## Goals, Challenges, and Wins
