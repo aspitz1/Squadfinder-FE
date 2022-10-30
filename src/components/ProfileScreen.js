@@ -4,13 +4,18 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
   Image,
   Pressable,
+  SafeAreaView,
 } from "react-native";
 import Swiper from "react-native-swiper";
 
-const ProfileScreen = ({ user, userGames, error }) => {
+const ProfileScreen = ({
+  user,
+  userGames = user.userGames,
+  error = "",
+  setModalVisible = null,
+}) => {
   const navigation = useNavigation();
 
   let games = userGames.map((game) => {
@@ -26,29 +31,36 @@ const ProfileScreen = ({ user, userGames, error }) => {
     );
   });
 
-  if (user.gamertag && !error) {
-    return (
-      <ScrollView contentContainerStyle={styles.container}>
-        {error && <Text>{error}</Text>}
-        <Text style={styles.header}>SquadFinder</Text>
-        <View style={styles.info}>
-          <Text style={styles.userInfo}>{user.gamertag}</Text>
-          <Text style={styles.userInfo}>{user.platform}</Text>
-        </View>
-        <Text style={styles.userInfo}>My Games:</Text>
-        <View style={styles.swiper}>
-          <Swiper
-            testID="gameSwiper"
-            showsButtons={true}
-            showsPagination={false}
-            contentContainerStyle={{
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {games}
-          </Swiper>
-        </View>
+  return !user.gamertag && error ? (
+    <SafeAreaView style={styles.errorContainer}>
+      <Text style={styles.error}>{error}</Text>
+    </SafeAreaView>
+  ) : (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.header}>SquadFinder</Text>
+      <View style={styles.info}>
+        <Text style={styles.userInfo}>{user.gamertag}</Text>
+        <Text style={styles.userInfo}>{user.platform}</Text>
+      </View>
+      <Text style={styles.userInfo}>My Games:</Text>
+      <View style={styles.swiper}>
+        <Swiper
+          testID="gameSwiper"
+          showsButtons={true}
+          showsPagination={false}
+          contentContainerStyle={{
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {games}
+        </Swiper>
+      </View>
+      {setModalVisible ? (
+        <Pressable style={styles.close} onPress={() => setModalVisible(false)}>
+          <Text style={styles.closeText}>Close</Text>
+        </Pressable>
+      ) : (
         <Pressable
           testID="editGamesBtn"
           style={styles.editButton}
@@ -57,16 +69,10 @@ const ProfileScreen = ({ user, userGames, error }) => {
         >
           <Text style={{ color: "#fff" }}>Edit My Games List</Text>
         </Pressable>
-        <Text style={styles.rawg}>Powered by RAWG</Text>
-      </ScrollView>
-    );
-  } else {
-    return (
-      <View style={styles.errorContainer}>
-        <Text style={styles.error}>{error}</Text>
-      </View>
-    );
-  }
+      )}
+      <Text style={styles.rawg}>Powered by RAWG</Text>
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -169,6 +175,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     width: "80%",
+  },
+  close: {
+    backgroundColor: "#3AE456",
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    borderRadius: 20,
+  },
+  closeText: {
+    fontWeight: "bold",
   },
 });
 

@@ -8,7 +8,7 @@ import {
   FlatList,
   Modal,
 } from "react-native";
-import SquadMemberScreen from "./SquadMemberScreen";
+import ProfileScreen from "./ProfileScreen";
 
 import { getUserSquad, getSingleUser, deleteSquad } from "../apiCalls";
 import { sortSquads } from "../utility-functions";
@@ -128,7 +128,7 @@ const MySquads = ({ userID }) => {
           setModalVisible(!modalVisible);
         }}
       >
-        <SquadMemberScreen
+        <ProfileScreen
           user={selectedUser}
           setModalVisible={setModalVisible}
         />
