@@ -86,7 +86,7 @@
         <line num="100" count="0" type="stmt"/>
         <line num="128" count="3" type="stmt"/>
       </file>
-      <file name="HomeScreen.js" path="/Users/aspitz/frontend/src/components/HomeScreen.js">
+      <file name="ProfileScreen.js" path="/Users/aspitz/frontend/src/components/ProfileScreen.js">
         <metrics statements="11" coveredstatements="9" conditionals="10" coveredconditionals="7" methods="3" coveredmethods="2"/>
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="8" type="stmt"/>

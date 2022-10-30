@@ -10,30 +10,30 @@ import {
 } from "react-native";
 import Swiper from "react-native-swiper";
 
-const HomeScreen = ({ user, myGames, error }) => {
+const ProfileScreen = ({ user, userGames, error }) => {
   const navigation = useNavigation();
 
-  let games = myGames.map((game) => {
+  let games = userGames.map((game) => {
     return (
       <View style={styles.swiperSlide} key={game.id + new Date()}>
         <Image
-          testID="homeScreenImg"
-          source={{ uri: game.image_url }}
+          testID="ProfileScreenImg"
+          source={{ uri: game.imageURL }}
           style={{ height: "100%", width: "100%", borderRadius: 20 }}
         ></Image>
-        <Text style={styles.gameTitle}>{game.game_title}</Text>
+        <Text style={styles.gameTitle}>{game.gameTitle}</Text>
       </View>
     );
   });
 
-  if (user.attributes && !error) {
+  if (user.gamertag && !error) {
     return (
       <ScrollView contentContainerStyle={styles.container}>
         {error && <Text>{error}</Text>}
         <Text style={styles.header}>SquadFinder</Text>
         <View style={styles.info}>
-          <Text style={styles.userInfo}>{user.attributes.gamertag}</Text>
-          <Text style={styles.userInfo}>{user.attributes.platform}</Text>
+          <Text style={styles.userInfo}>{user.gamertag}</Text>
+          <Text style={styles.userInfo}>{user.platform}</Text>
         </View>
         <Text style={styles.userInfo}>My Games:</Text>
         <View style={styles.swiper}>
@@ -172,4 +172,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default ProfileScreen;

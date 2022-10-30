@@ -10,23 +10,23 @@ const MyGames = ({ userGames, addGame, removeGame, userID }) => {
   const [selectedGame, setSelectedGame] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const [displayedGames, setDisplayedGames] = useState(userGames);
+  
+    useEffect(() => {
+      setDisplayedGames(sortGames(userGames));
+    }, [userGames]);
 
   const inputHandler = (enteredText) => {
     setSearchInput(enteredText);
     setDisplayedGames(
       userGames.filter((game) =>
-        game.game_title.toLowerCase().includes(enteredText.toLowerCase())
+        game.gameTitle.toLowerCase().includes(enteredText.toLowerCase())
       )
     );
   };
 
-  useEffect(() => {
-    setDisplayedGames(sortGames(userGames));
-  }, [userGames]);
-
   const iconClickHandler = (game) => {
     fetch(
-      `https://squadfinder2205be.herokuapp.com/api/v1/games/${game.game_id}`
+      `https://squadfinder2205be.herokuapp.com/api/v1/games/${game.gameID}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -81,7 +81,7 @@ const MyGames = ({ userGames, addGame, removeGame, userID }) => {
               >
                 <Image
                   testID={`users-game-icon-${itemData.item.id}`}
-                  source={{ uri: `${itemData.item.image_url}` }}
+                  source={{ uri: `${itemData.item.imageURL}` }}
                   style={{
                     width: "100%",
                     height: "100%",
@@ -90,7 +90,7 @@ const MyGames = ({ userGames, addGame, removeGame, userID }) => {
                     bottom: 0,
                   }}
                 ></Image>
-                <Text style={styles.gameTitle}>{itemData.item.game_title}</Text>
+                <Text style={styles.gameTitle}>{itemData.item.gameTitle}</Text>
               </Pressable>
             );
           }}

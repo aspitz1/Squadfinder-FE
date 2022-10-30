@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import {
   StyleSheet,
@@ -35,7 +35,7 @@ const MySquads = ({ userID }) => {
   const [error, setError] = useState("");
 
   useFocusEffect(
-    React.useCallback(() => {
+    useCallback(() => {
       getUserSquad(userID)
         .then(({ data }) => {
           const filteredSquads = data.filter((squad) => {
@@ -51,11 +51,19 @@ const MySquads = ({ userID }) => {
                 : "Casual",
               eventTime: attribute.attributes.squad["event_time"],
               game: attribute.attributes.squad.game,
-              members: attribute.attributes.squad.members,
+              members: attribute.attributes.squad.members.map((member) => {
+                return {
+                  gamertag: member.gamertag,
+                  id: member.id,
+                  platform: member.platform,
+                  userGames: member.user_games,
+                };
+              }),
               numberPlayers: attribute.attributes.squad["number_players"],
             };
           });
-          setUserSquads(sortSquads(squads));
+          sortSquads(squads);
+          setUserSquads(squads);
         })
         .catch(() => {
           setError("Something went wrong, please try again.");
@@ -67,8 +75,21 @@ const MySquads = ({ userID }) => {
   const memberIconClickHandler = (id) => {
     setSelectedUser({});
     getSingleUser(id)
-      .then((data) => {
-        setSelectedUser(data.data);
+      .then(({ data }) => {
+        const user = {
+          gamertag: data.attributes.gamertag,
+          platform: data.attributes.platform,
+          id: data.id,
+          userGames: data.attributes.user_games.map(game => {
+            return {
+              gameID: game.game_id,
+              gameTitle: game.game_title,
+              id: game.id,
+              imageURL: game.image_url
+            }
+          })
+        }
+        setSelectedUser(user);
       })
       .then(() => setModalVisible(true));
   };

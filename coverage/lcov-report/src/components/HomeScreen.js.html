@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/components/HomeScreen.js</title>
+    <title>Code coverage report for src/components/ProfileScreen.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/components</a> HomeScreen.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/components</a> ProfileScreen.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -439,14 +439,14 @@ import {
 } from "react-native";
 import Swiper from "react-native-swiper";
 &nbsp;
-const HomeScreen = ({ user, myGames, error }) =&gt; {
+const ProfileScreen = ({ user, myGames, error }) =&gt; {
   const navigation = useNavigation();
 &nbsp;
   let games = myGames.map((game) =&gt; {
     return (
       &lt;View style={styles.swiperSlide} key={game.id + new Date()}&gt;
         &lt;Image
-          testID="homeScreenImg"
+          testID="ProfileScreenImg"
           source={{ uri: game.image_url }}
           style={{ height: "100%", width: "100%", borderRadius: 20 }}
         &gt;&lt;/Image&gt;
@@ -608,7 +608,7 @@ const styles = StyleSheet.create({
   },
 });
 &nbsp;
-export default HomeScreen;
+export default ProfileScreen;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

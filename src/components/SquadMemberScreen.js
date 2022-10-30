@@ -10,14 +10,14 @@ import {
 import Swiper from "react-native-swiper";
 
 const SquadMemberScreen = ({ user, setModalVisible }) => {
-  let games = user.attributes.user_games.map((game) => {
+  let games = user.userGames.map((game) => {
     return (
       <View style={styles.swiperSlide} key={game.id}>
         <Image
-          source={{ uri: game.image_url }}
+          source={{ uri: game.imageURL }}
           style={{ height: "100%", width: "100%", borderRadius: 20 }}
         ></Image>
-        <Text style={styles.gameTitle}>{game.game_title}</Text>
+        <Text style={styles.gameTitle}>{game.gameTitle}</Text>
       </View>
     );
   });
@@ -25,11 +25,11 @@ const SquadMemberScreen = ({ user, setModalVisible }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.info}>
-        <Text style={styles.userInfo}>{user.attributes.gamertag}</Text>
-        <Text style={styles.userInfo}>{user.attributes.platform}</Text>
+        <Text style={styles.userInfo}>{user.gamertag}</Text>
+        <Text style={styles.userInfo}>{user.platform}</Text>
       </View>
       <Text style={[styles.userInfo, { marginTop: 25 }]}>
-        {user.attributes.gamertag}'s Games:
+        {user.gamertag}'s Games:
       </Text>
       <View style={styles.swiper}>
         <Swiper

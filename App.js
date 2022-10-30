@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import LoginScreen from "./src/components/LoginScreen";
-import HomeScreen from "./src/components/HomeScreen";
+import ProfileScreen from "./src/components/ProfileScreen";
 import MyGames from "./src/components/MyGames";
 import SearchGames from "./src/components/SearchGames";
 import FormSquadScreen from "./src/components/FormSquadScreen";
@@ -23,18 +22,51 @@ const App = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    getSingleUser(1)
-      .then((data) => {
+    getSingleUser(5)
+      .then(({ data }) => {
         setError("");
-        setCurrentUser(data.data);
-        setUserGames(sortGames(data.data.attributes.user_games));
+        const userData = {
+          id: data.id,
+          gamertag: data.attributes.gamertag,
+          platform: data.attributes.platform,
+          userGames: data.attributes.user_games.map((game) => {
+            return {
+              gameTitle: game.game_title,
+              gameID: game.game_id,
+              id: game.id,
+              imageURL: game.image_url,
+              userID: game.user_id,
+            };
+          }),
+        };
+        sortGames(userData.userGames);
+        setCurrentUser(userData);
+        setUserGames(userData.userGames);
       })
       .catch(() =>
         setError("Looks like something went wrong retrieving the user data.")
       );
 
     getAllUsers()
-      .then((data) => setAllUsers(data.data))
+      .then(({ data }) => {
+        const usersData = data.map((user) => {
+          return {
+            id: user.id,
+            gamertag: user.attributes.gamertag,
+            platform: user.attributes.platform,
+            userGames: user.attributes.user_games.map((game) => {
+              return {
+                gameTitle: game.game_title,
+                gameID: game.game_id,
+                id: game.id,
+                imageURL: game.image_url,
+                userID: game.user_id,
+              };
+            }),
+          };
+        });
+        setAllUsers(usersData);
+      })
       .catch(() =>
         setError("Looks like something went wrong retrieving the user data.")
       );
@@ -46,7 +78,7 @@ const App = () => {
 
   const removeGame = (gameID) => {
     const updatedUserGames = userGames.filter(
-      (userGame) => userGame.game_id !== gameID
+      (userGame) => userGame.gameID !== gameID
     );
     setUserGames(updatedUserGames);
   };
@@ -66,24 +98,13 @@ const App = () => {
           headerTintColor: "#3AE456",
         }}
       >
-        <Drawer.Screen name="Select a Profile">
+        <Drawer.Screen name="Profile">
           {() => (
-            <LoginScreen
-              allUsers={allUsers}
-              currentUser={currentUser}
-              setCurrentUser={setCurrentUser}
-              userGames={userGames}
-              setUserGames={setUserGames}
-            />
-          )}
-        </Drawer.Screen>
-        <Drawer.Screen name="Home">
-          {() => (
-            <HomeScreen
+            <ProfileScreen
               error={error}
               setError={setError}
               user={currentUser}
-              myGames={userGames}
+              userGames={userGames}
             />
           )}
         </Drawer.Screen>

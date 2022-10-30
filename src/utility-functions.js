@@ -1,8 +1,8 @@
 const sortGames = (gamesArray) => {
   const sortedGames = gamesArray.sort((a, b) => {
     return (
-      a.game_title.toLowerCase().charCodeAt(0) -
-      b.game_title.toLowerCase().charCodeAt(0)
+      a.gameTitle.toLowerCase().charCodeAt(0) -
+      b.gameTitle.toLowerCase().charCodeAt(0)
     );
   });
   return sortedGames;

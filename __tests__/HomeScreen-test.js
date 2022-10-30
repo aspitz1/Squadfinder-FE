@@ -1,14 +1,14 @@
 import { render, screen } from "@testing-library/react-native";
 
-import HomeScreen from "../src/components/HomeScreen";
-import data from "./mock-props-data/HomeScreen-mock-data.json";
+import ProfileScreen from "../src/components/ProfileScreen";
+import data from "./mock-props-data/ProfileScreen-mock-data.json";
 import { NavigationContainer } from "@react-navigation/native";
 
-describe("<HomeScreen />", () => {
+describe("<ProfileScreen />", () => {
   it("renders a user's gamertag", () => {
     render(
       <NavigationContainer>
-        <HomeScreen
+        <ProfileScreen
           user={data.user}
           myGames={data.userGames}
           error={data.noError}
@@ -21,7 +21,7 @@ describe("<HomeScreen />", () => {
   it("renders a user's preferred console", () => {
     render(
       <NavigationContainer>
-        <HomeScreen
+        <ProfileScreen
           user={data.user}
           myGames={data.userGames}
           error={data.noError}
@@ -34,7 +34,7 @@ describe("<HomeScreen />", () => {
   it("renders a 'My Games' prompt", () => {
     render(
       <NavigationContainer>
-        <HomeScreen
+        <ProfileScreen
           user={data.user}
           myGames={data.userGames}
           error={data.noError}
@@ -47,7 +47,7 @@ describe("<HomeScreen />", () => {
   it("renders a swiper of images for the games that exist in the user's list", () => {
     render(
       <NavigationContainer>
-        <HomeScreen
+        <ProfileScreen
           user={data.user}
           myGames={data.userGames}
           error={data.noError}
@@ -55,7 +55,7 @@ describe("<HomeScreen />", () => {
       </NavigationContainer>
     );
     expect(screen.getByTestId("gameSwiper")).toBeVisible();
-    expect(screen.getAllByTestId("homeScreenImg")[1]).toHaveProp("source", {
+    expect(screen.getAllByTestId("ProfileScreenImg")[1]).toHaveProp("source", {
       uri: data.userGames[0].image_url,
     });
   });
@@ -63,7 +63,7 @@ describe("<HomeScreen />", () => {
   it("renders the titles of the games in the swiper", () => {
     render(
       <NavigationContainer>
-        <HomeScreen
+        <ProfileScreen
           user={data.user}
           myGames={data.userGames}
           error={data.noError}
@@ -76,7 +76,7 @@ describe("<HomeScreen />", () => {
   it("renders a button to edit the user's game list", () => {
     render(
       <NavigationContainer>
-        <HomeScreen
+        <ProfileScreen
           user={data.user}
           myGames={data.userGames}
           error={data.noError}
@@ -84,13 +84,13 @@ describe("<HomeScreen />", () => {
       </NavigationContainer>
     );
     expect(screen.getByText("Edit My Games List")).toBeVisible();
-    expect(screen.getByTestId("editGamesBtn")).toHaveProp("onClick")
+    expect(screen.getByTestId("editGamesBtn")).toHaveProp("onClick");
   });
 
   it("renders a message crediting RAWG for our source of game data", () => {
     render(
       <NavigationContainer>
-        <HomeScreen
+        <ProfileScreen
           user={data.user}
           myGames={data.userGames}
           error={data.noError}
@@ -103,13 +103,17 @@ describe("<HomeScreen />", () => {
   it("renders an error message if there was an issue retrieving the user data", () => {
     render(
       <NavigationContainer>
-        <HomeScreen
+        <ProfileScreen
           user={data.user}
           myGames={data.userGames}
           error={data.error}
         />
       </NavigationContainer>
     );
-    expect(screen.getByText("Looks like something went wrong retrieving the user data.")).toBeVisible();
+    expect(
+      screen.getByText(
+        "Looks like something went wrong retrieving the user data."
+      )
+    ).toBeVisible();
   });
 });

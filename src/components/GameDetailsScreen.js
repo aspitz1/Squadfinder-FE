@@ -24,7 +24,7 @@ const GameDetailsScreen = ({
   useEffect(() => {
     if (game) {
       const foundGame = userGames.find((collectionGame) => {
-        return collectionGame.game_id === game.id;
+        return collectionGame.gameID === game.id;
       });
       setHasGame(foundGame);
     }
@@ -34,7 +34,7 @@ const GameDetailsScreen = ({
 
   const removeGameHandler = () => {
     const foundGame = userGames.find((collectionGame) => {
-      return collectionGame.game_id === game.id;
+      return collectionGame.gameID === game.id;
     });
 
     deleteGame(userID, foundGame.id)
@@ -55,8 +55,15 @@ const GameDetailsScreen = ({
       imageURL: game.image,
       gameTitle: game.title,
     })
-      .then((data) => {
-        addGame({ ...data.data.attributes, id: data.data.id });
+      .then(({ data }) => {
+        const game = {
+          gameID: data.attributes.game_id,
+          gameTitle: data.attributes.game_title,
+          imageURL: data.attributes.image_url,
+          userID: data.attributes.user_id,
+          id: data.id
+        }
+        addGame(game);
         setHasGame(true);
         setError("");
       })

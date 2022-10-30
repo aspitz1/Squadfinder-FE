@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { View, Pressable, Text, StyleSheet, Platform } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import SelectDropdown from "react-native-select-dropdown";
@@ -21,6 +21,19 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
   const [error, setError] = useState("");
 
   const navigation = useNavigation();
+  
+    useFocusEffect(
+      useCallback(() => {
+        return () => {
+          setDate(new Date());
+          setFilterByNameValue("");
+          setSquadMembers([]);
+          setCompetitive(false);
+          setSquadFull(false);
+          setError("");
+        };
+      }, [])
+    );
 
   const formSquadHandler = () => {
     const squad = {
@@ -31,8 +44,9 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
       competitive: competitive,
       squadMembers: squadMembers,
     };
+
     postSquad(squad)
-      .then((response) => {
+      .then(() => {
         navigation.navigate("My Squads");
       })
       .catch(() => {
@@ -43,20 +57,7 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
       });
   };
 
-  useFocusEffect(
-    React.useCallback(() => {
-      return () => {
-        setDate(new Date());
-        setFilterByNameValue("");
-        setSquadMembers([]);
-        setCompetitive(false);
-        setSquadFull(false);
-        setError("");
-      };
-    }, [])
-  );
-
-  const onChange = (event, selectedDate) => {
+  const calenderHandler = (event, selectedDate) => {
     if (event.type !== "dismissed") {
       const currentDate = selectedDate;
       if (Platform.OS === "android") {
@@ -86,8 +87,8 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
 
   const filterUsersByGame = (selectedGame) => {
     const filteredUsers = allUsers.reduce((arr, user) => {
-      const usersWithGame = user.attributes.user_games.filter(
-        (game) => game.game_title === selectedGame
+      const usersWithGame = user.userGames.filter(
+        (game) => game.gameTitle === selectedGame
       );
       if (usersWithGame.length) {
         arr.push(user);
@@ -101,7 +102,7 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
     if (input) {
       setFilterByNameValue(input);
       const filteredUsers = users.filter((user) =>
-        user.attributes.gamertag
+        user.gamertag
           .toLocaleLowerCase()
           .includes(input.toLocaleLowerCase())
       );
@@ -129,7 +130,7 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
   return (
     <View style={styles.container}>
       <SelectDropdown
-        data={userGames.map((game) => game.game_title)}
+        data={userGames.map((game) => game.gameTitle)}
         defaultButtonText={"Select Game"}
         onSelect={(selectedGame) => handleSelectGame(selectedGame)}
         buttonStyle={styles.selectGameBtnStyle}
@@ -178,7 +179,7 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
             value={date}
             mode={mode}
             is24Hour={true}
-            onChange={onChange}
+            onChange={calenderHandler}
             minimumDate={new Date()}
             style={styles.datePicker}
           />
@@ -199,7 +200,7 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
               return (
                 <View style={styles.userContainer}>
                   <Text style={styles.userGamerTag}>
-                    {item.attributes.gamertag}
+                    {item.gamertag}
                   </Text>
                   <Pressable
                     style={
