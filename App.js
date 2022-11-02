@@ -4,10 +4,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import ProfileScreen from "./src/components/ProfileScreen";
-import MyGames from "./src/components/MyGames";
-import SearchGames from "./src/components/SearchGames";
+import MyGamesScreen from "./src/components/MyGamesScreen";
+import SearchGamesScreen from "./src/components/SearchGamesScreen";
 import FormSquadScreen from "./src/components/FormSquadScreen";
-import MySquads from "./src/components/MySquads";
+import MySquadsScreen from "./src/components/MySquadsScreen";
 import CustomDrawer from "./src/components/CustomDrawer";
 
 import { getAllUsers, getSingleUser } from "./src/apiCalls";
@@ -110,7 +110,7 @@ const App = () => {
         </Drawer.Screen>
         <Drawer.Screen name="My Games">
           {() => (
-            <MyGames
+            <MyGamesScreen
               userGames={userGames}
               addGame={addGame}
               removeGame={removeGame}
@@ -120,7 +120,7 @@ const App = () => {
         </Drawer.Screen>
         <Drawer.Screen name="Search for Games">
           {() => (
-            <SearchGames
+            <SearchGamesScreen
               userGames={userGames}
               addGame={addGame}
               removeGame={removeGame}
@@ -138,7 +138,7 @@ const App = () => {
           )}
         </Drawer.Screen>
         <Drawer.Screen name="My Squads">
-          {() => <MySquads userID={currentUser.id} />}
+          {() => <MySquadsScreen userID={currentUser.id} />}
         </Drawer.Screen>
       </Drawer.Navigator>
     </NavigationContainer>

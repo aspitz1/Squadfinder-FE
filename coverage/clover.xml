@@ -106,7 +106,7 @@
         <line num="5" count="0" type="stmt"/>
         <line num="16" count="2" type="stmt"/>
       </file>
-      <file name="MyGames.js" path="/Users/aspitz/frontend/src/components/MyGames.js">
+      <file name="MyGamesScreen.js" path="/Users/aspitz/frontend/src/components/MyGamesScreen.js">
         <metrics statements="22" coveredstatements="12" conditionals="2" coveredconditionals="1" methods="10" coveredmethods="3"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="4" type="stmt"/>
@@ -131,7 +131,7 @@
         <line num="80" count="0" type="stmt"/>
         <line num="104" count="1" type="stmt"/>
       </file>
-      <file name="SearchGames.js" path="/Users/aspitz/frontend/src/components/SearchGames.js">
+      <file name="SearchGamesScreen.js" path="/Users/aspitz/frontend/src/components/SearchGamesScreen.js">
         <metrics statements="52" coveredstatements="18" conditionals="16" coveredconditionals="5" methods="17" coveredmethods="1"/>
         <line num="17" count="1" type="stmt"/>
         <line num="18" count="5" type="stmt"/>

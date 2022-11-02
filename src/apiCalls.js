@@ -5,14 +5,15 @@ const searchFetch = (input) => {
 };
 
 const getSingleUser = (userID) => {
-  return fetch(`https://squadfinder2205be.herokuapp.com/api/v1/users/${userID}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Looks like something went wrong.");
-      } else {
-        return response.json();
-      }
-    });
+  return fetch(
+    `https://squadfinder2205be.herokuapp.com/api/v1/users/${userID}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error("Looks like something went wrong.");
+    } else {
+      return response.json();
+    }
+  });
 };
 
 const getAllUsers = () => {
@@ -63,6 +64,18 @@ const postSquad = ({
   }).then((response) => {
     if (!response.ok) {
       throw new Error("Something went wrong.");
+    } else {
+      return response.json();
+    }
+  });
+};
+
+const getSingleGame = (game) => {
+  return fetch(
+    `https://squadfinder2205be.herokuapp.com/api/v1/games/${game.game_id}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error();
     } else {
       return response.json();
     }
@@ -121,6 +134,7 @@ export {
   getSingleUser,
   getAllUsers,
   postSquad,
+  getSingleGame,
   postGame,
   deleteGame,
   deleteSquad,

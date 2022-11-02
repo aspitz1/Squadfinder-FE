@@ -5,7 +5,7 @@ import { StyleSheet, View, Pressable, Image, Modal, Text } from "react-native";
 import LoadingModal from "./LoadingModal";
 import { sortGames } from "../utility-functions";
 
-const MyGames = ({ userGames, addGame, removeGame, userID }) => {
+const MyGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null);
   const [searchInput, setSearchInput] = useState("");
@@ -163,4 +163,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyGames;
+export default MyGamesScreen;

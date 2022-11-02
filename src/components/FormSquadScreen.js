@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { View, Pressable, Text, StyleSheet, Platform } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import SelectDropdown from "react-native-select-dropdown";
@@ -21,6 +21,7 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
   const [error, setError] = useState("");
 
   const navigation = useNavigation();
+  const dropdownRef = useRef({});
   
     useFocusEffect(
       useCallback(() => {
@@ -31,6 +32,8 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
           setCompetitive(false);
           setSquadFull(false);
           setError("");
+          setSelected("");
+          dropdownRef.current.reset();
         };
       }, [])
     );
@@ -131,6 +134,7 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
     <View style={styles.container}>
       <SelectDropdown
         data={userGames.map((game) => game.gameTitle)}
+        ref={dropdownRef}
         defaultButtonText={"Select Game"}
         onSelect={(selectedGame) => handleSelectGame(selectedGame)}
         buttonStyle={styles.selectGameBtnStyle}

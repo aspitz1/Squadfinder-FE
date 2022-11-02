@@ -28,7 +28,7 @@ const assignColor = () => {
   }
 };
 
-const MySquads = ({ userID }) => {
+const MySquadsScreen = ({ userID }) => {
   const [userSquads, setUserSquads] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedUser, setSelectedUser] = useState({});
@@ -290,4 +290,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MySquads;
+export default MySquadsScreen;

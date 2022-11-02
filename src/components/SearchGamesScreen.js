@@ -1,20 +1,22 @@
-import { searchFetch } from "../apiCalls";
 import React, { useState, useRef } from "react";
 import { FlatList, TextInput } from "react-native-gesture-handler";
-import SelectDropdown from "react-native-select-dropdown";
-import LoadingModal from "./LoadingModal";
-import GameDetailsScreen from "./GameDetailsScreen";
 import {
   StyleSheet,
   View,
-  ActivityIndicator,
   Pressable,
   Image,
   Modal,
   Text,
 } from "react-native";
 
-const SearchGames = ({ userGames, addGame, removeGame, userID }) => {
+import { searchFetch, getSingleGame } from "../apiCalls";
+import genres from "../genres";
+
+import SelectDropdown from "react-native-select-dropdown";
+import LoadingModal from "./LoadingModal";
+import GameDetailsScreen from "./GameDetailsScreen";
+
+const SearchGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
   const [displayedGames, setDisplayedGames] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
@@ -68,37 +70,12 @@ const SearchGames = ({ userGames, addGame, removeGame, userID }) => {
   };
 
   const iconClickHandler = (game) => {
-    fetch(
-      `https://squadfinder2205be.herokuapp.com/api/v1/games/${game.game_id}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setSelectedGame(data);
-      });
+    getSingleGame(game).then((data) => {
+      setSelectedGame(data);
+    });
     setModalVisible(true);
-    setSelectedGame(null);
+    setSelectedGame("");
   };
-
-  const genres = [
-    "Action",
-    "Adventure",
-    "Fantasy",
-    "Shooter",
-    "RPG",
-    "Strategy",
-    "Board Games",
-    "Card",
-    "Indie",
-    "Arcade",
-    "Casual",
-    "Platformer",
-    "Sports",
-    "Racing",
-    "Simulation",
-    "Massively Multiplayer",
-    "Puzzle",
-    "Racing",
-  ];
 
   return (
     <View style={styles.container}>
@@ -137,7 +114,7 @@ const SearchGames = ({ userGames, addGame, removeGame, userID }) => {
         </Text>
       )}
       <SelectDropdown
-        data={genres.sort()}
+        data={genres}
         search={true}
         searchPlaceHolder="Search..."
         buttonStyle={styles.selectListBox}
@@ -158,13 +135,7 @@ const SearchGames = ({ userGames, addGame, removeGame, userID }) => {
       >
         <Text style={{ fontSize: 20, color: "#3AE456" }}>Search</Text>
       </Pressable>
-      {searching && (
-        <ActivityIndicator
-          style={{ position: "absolute", top: 300 }}
-          size="large"
-          color="#3AE456"
-        />
-      )}
+      {searching && <LoadingModal />}
       {showGames && displayedGames ? (
         displayedGames.length ? (
           <View style={styles.gamesContainer}>
@@ -339,4 +310,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SearchGames;
+export default SearchGamesScreen;

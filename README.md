@@ -66,7 +66,7 @@ _The iOS simulator requires Xcode. Xcode can only be run on macOS._
 
 - User can remove games from their favorited games.
 
-![User can remove games from their favorited games](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/MyGames-RemoveGame.gif)
+![User can remove games from their favorited games](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/MyGamesScreen-RemoveGame.gif)
 
 - User can search for specific games.
 
@@ -84,9 +84,9 @@ _The iOS simulator requires Xcode. Xcode can only be run on macOS._
 
 ![Then the User chooses a date and time for the squad-up event](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/FormSquad2.gif)
 
-- Then the User can invite a maximum of 3 other users to the squad event. Once a user has been invited to a squad event, that event appears in each squad members "MySquads" section. If a user chooses, they can tap the "Not Going" button and end their association with that squad-up event.
+- Then the User can invite a maximum of 3 other users to the squad event. Once a user has been invited to a squad event, that event appears in each squad members "MySquadsScreen" section. If a user chooses, they can tap the "Not Going" button and end their association with that squad-up event.
 
-![Then the User can invite a maximum of 3 other users to the squad event. Once a user has been invited to a squad event, that event appears in each squad members "MySquads" section. If a user chooses, they can tap the "Not Going" button and end their association with that squad-up event.](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/FormSquad3-RemoveSquad.gif)
+![Then the User can invite a maximum of 3 other users to the squad event. Once a user has been invited to a squad event, that event appears in each squad members "MySquadsScreen" section. If a user chooses, they can tap the "Not Going" button and end their association with that squad-up event.](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/FormSquad3-RemoveSquad.gif)
 
 ## Technologies
 

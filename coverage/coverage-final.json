@@ -1184,8 +1184,8 @@
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
     "hash": "857aa630611941bb73fc69d548bf4273447e34a5"
   },
-  "/Users/aspitz/frontend/src/components/MyGames.js": {
-    "path": "/Users/aspitz/frontend/src/components/MyGames.js",
+  "/Users/aspitz/frontend/src/components/MyGamesScreen.js": {
+    "path": "/Users/aspitz/frontend/src/components/MyGamesScreen.js",
     "statementMap": {
       "0": {
         "start": { "line": 8, "column": 16 },
@@ -1458,8 +1458,8 @@
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
     "hash": "9effd23e32943dec2cfaa29d52fe5601ebb89488"
   },
-  "/Users/aspitz/frontend/src/components/SearchGames.js": {
-    "path": "/Users/aspitz/frontend/src/components/SearchGames.js",
+  "/Users/aspitz/frontend/src/components/SearchGamesScreen.js": {
+    "path": "/Users/aspitz/frontend/src/components/SearchGamesScreen.js",
     "statementMap": {
       "0": {
         "start": { "line": 17, "column": 20 },
