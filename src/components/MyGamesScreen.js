@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { FlatList, TextInput } from "react-native-gesture-handler";
-import GameDetailsScreen from "./GameDetailsScreen";
-import { StyleSheet, View, Pressable, Image, Modal, Text } from "react-native";
-import LoadingModal from "./LoadingModal";
+import {
+  StyleSheet,
+  View,
+  Pressable,
+  Image,
+  Modal,
+  Text,
+  SafeAreaView,
+} from "react-native";
+
 import { sortGames } from "../utility-functions";
+
+import LoadingModal from "./LoadingModal";
+import GameDetailsScreen from "./GameDetailsScreen";
 
 const MyGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const [displayedGames, setDisplayedGames] = useState(userGames);
-  
-    useEffect(() => {
-      setDisplayedGames(sortGames(userGames));
-    }, [userGames]);
+
+  useEffect(() => {
+    setDisplayedGames(sortGames(userGames));
+  }, [userGames]);
 
   const inputHandler = (enteredText) => {
     setSearchInput(enteredText);
@@ -25,9 +35,7 @@ const MyGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
   };
 
   const iconClickHandler = (game) => {
-    fetch(
-      `https://squadfinder2205be.herokuapp.com/api/v1/games/${game.gameID}`
-    )
+    fetch(`https://squadfinder2205be.herokuapp.com/api/v1/games/${game.gameID}`)
       .then((response) => response.json())
       .then((data) => {
         setSelectedGame(data);
@@ -37,7 +45,7 @@ const MyGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Modal
         animationType="slide"
         transparent={true}
@@ -97,7 +105,7 @@ const MyGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
         ></FlatList>
       </View>
       <Text style={styles.rawg}>Powered by RAWG</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -106,16 +114,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#201626",
     alignItems: "center",
+    justifyContent: "space-around"
   },
   textInput: {
     borderWidth: 1,
-    width: 250,
+    width: "70%",
     height: 35,
     color: "white",
-    shadowRadius: 1,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
     borderRadius: 5,
     borderColor: "#3AE456",
     padding: 5,
@@ -132,10 +137,6 @@ const styles = StyleSheet.create({
     width: 170,
     justifyContent: "center",
     textAlign: "center",
-    shadowRadius: 3,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
     borderRadius: 20,
     borderWidth: 1,
     borderColor: "#3AE456",
@@ -143,21 +144,15 @@ const styles = StyleSheet.create({
   },
   rawg: {
     height: "5%",
-    margin: 10,
-    shadowRadius: 7,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
+    color: "#555",
   },
   gameTitle: {
     position: "absolute",
-    bottom: 10,
+    bottom: 20,
     width: "100%",
     textAlign: "center",
     color: "#fff",
     fontSize: 15,
-    borderWidth: 1,
-    borderRadius: 10,
     backgroundColor: "rgba(0,0,0,.6)",
     overflow: "hidden",
   },
