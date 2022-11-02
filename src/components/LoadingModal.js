@@ -5,7 +5,7 @@ const LoadingModal = () => {
   return (
     <View style={styles.container}>
       <ActivityIndicator
-        style={{ marginTop: 150 }}
+        style={styles.activityIndicator}
         size="large"
         color="#3AE456"
       />
@@ -20,6 +20,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#201626",
   },
+  activityIndicator: {
+    marginTop: 150 
+  }
 });
 
 export default LoadingModal;
