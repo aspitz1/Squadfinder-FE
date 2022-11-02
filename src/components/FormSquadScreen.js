@@ -1,5 +1,13 @@
 import React, { useState, useCallback, useRef } from "react";
-import { View, Pressable, Text, StyleSheet, Platform } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Touchable,
+  Text,
+  StyleSheet,
+  Platform,
+  SafeAreaView,
+} from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import SelectDropdown from "react-native-select-dropdown";
 import { FlatList, TextInput } from "react-native-gesture-handler";
@@ -7,6 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useFocusEffect } from "@react-navigation/native";
 
 import { postSquad } from "../apiCalls";
+import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 const FormSquadScreen = ({ allUsers, userGames, userID }) => {
   const [date, setDate] = useState(new Date());
@@ -22,21 +31,21 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
 
   const navigation = useNavigation();
   const dropdownRef = useRef({});
-  
-    useFocusEffect(
-      useCallback(() => {
-        return () => {
-          setDate(new Date());
-          setFilterByNameValue("");
-          setSquadMembers([]);
-          setCompetitive(false);
-          setSquadFull(false);
-          setError("");
-          setSelected("");
-          dropdownRef.current.reset();
-        };
-      }, [])
-    );
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        setDate(new Date());
+        setFilterByNameValue("");
+        setSquadMembers([]);
+        setCompetitive(false);
+        setSquadFull(false);
+        setError("");
+        setSelected("");
+        dropdownRef.current.reset();
+      };
+    }, [])
+  );
 
   const formSquadHandler = () => {
     const squad = {
@@ -105,9 +114,7 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
     if (input) {
       setFilterByNameValue(input);
       const filteredUsers = users.filter((user) =>
-        user.gamertag
-          .toLocaleLowerCase()
-          .includes(input.toLocaleLowerCase())
+        user.gamertag.toLocaleLowerCase().includes(input.toLocaleLowerCase())
       );
       setUsers(filteredUsers);
     } else {
@@ -131,7 +138,7 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <SelectDropdown
         data={userGames.map((game) => game.gameTitle)}
         ref={dropdownRef}
@@ -158,12 +165,12 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
           }
         ></View>
       </Pressable>
-      <Pressable onPress={showDatePicker} style={styles.chooseDateBtn}>
+      <TouchableOpacity onPress={showDatePicker} style={styles.chooseDateBtn}>
         <Text style={styles.chooseDateTimeTxt}>Choose Date</Text>
-      </Pressable>
-      <Pressable onPress={showTimePicker} style={styles.chooseTimeBtn}>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={showTimePicker} style={styles.chooseTimeBtn}>
         <Text style={styles.chooseDateTimeTxt}>Choose Time</Text>
-      </Pressable>
+      </TouchableOpacity>
       <Text style={styles.selectedTimeTxt}>
         {date.getMonth() +
           1 +
@@ -203,9 +210,7 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
             renderItem={({ item }) => {
               return (
                 <View style={styles.userContainer}>
-                  <Text style={styles.userGamerTag}>
-                    {item.gamertag}
-                  </Text>
+                  <Text style={styles.userGamerTag}>{item.gamertag}</Text>
                   <Pressable
                     style={
                       squadMembers.includes(item.id)
@@ -229,7 +234,7 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
             }}
           />
         ) : (
-          <Text>Sorry, there are no users with this Gamer Tag.</Text>
+          <Text style={styles.noGamers}>Sorry, there are no users with this Gamer Tag.</Text>
         )}
         {squadMembers.length === 3 && (
           <View style={styles.squadsFullContainer}>
@@ -242,27 +247,26 @@ const FormSquadScreen = ({ allUsers, userGames, userID }) => {
           <Text style={styles.error}>{error}</Text>
         </View>
       )}
-      <Pressable
+      <TouchableOpacity
         style={styles.formSquadBtn}
         disabled={!selected && !squadMembers.length}
         onPress={formSquadHandler}
       >
         <Text style={styles.formSquadText}>"FORM SQUAD!"</Text>
-      </Pressable>
-    </View>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#201626",
-    paddingTop: 20,
-    minHeight: "100%",
+    flex: 1,
     alignItems: "center",
+    justifyContent: "space-around",
   },
   selectGameBtnStyle: {
     width: "90%",
-    marginBottom: 20,
     backgroundColor: "#393051",
     borderWidth: 1,
     borderColor: "#3AE456",
@@ -319,16 +323,11 @@ const styles = StyleSheet.create({
   },
   chooseDateBtn: {
     backgroundColor: "#393051",
-    marginTop: 20,
     width: "90%",
     alignItems: "center",
     borderWidth: 1,
     borderColor: "#3AE456",
     borderRadius: 20,
-    shadowColor: "#3AE345",
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
   },
   chooseDateTimeTxt: {
     color: "#fff",
@@ -337,16 +336,11 @@ const styles = StyleSheet.create({
   },
   chooseTimeBtn: {
     backgroundColor: "#393051",
-    marginTop: 20,
     width: "90%",
     alignItems: "center",
     borderWidth: 1,
     borderColor: "#3AE456",
     borderRadius: 20,
-    shadowColor: "#3AE345",
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
   },
   selectedTimeTxt: {
     paddingTop: 10,
@@ -355,17 +349,11 @@ const styles = StyleSheet.create({
   },
   datePicker: {
     width: 130,
-    marginTop: 10,
   },
   filterByNameInput: {
-    marginTop: 20,
     fontSize: 20,
     borderWidth: 1,
     borderColor: "#3AE456",
-    shadowColor: "#3AE345",
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
     borderRadius: 5,
     width: "90%",
     padding: 10,
@@ -374,21 +362,16 @@ const styles = StyleSheet.create({
   userList: {
     backgroundColor: "#393051",
     width: "90%",
-    height: "25%",
+    flex: 2/3,
     alignItems: "center",
     marginTop: 20,
     borderRadius: 10,
   },
   formSquadBtn: {
-    marginTop: 30,
     backgroundColor: "#393051",
     borderWidth: 1,
     borderColor: "#3AE456",
     borderRadius: 20,
-    shadowColor: "#3AE345",
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
     width: "90%",
     alignItems: "center",
   },
@@ -399,6 +382,12 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingRight: 30,
     paddingLeft: 30,
+  },
+  noGamers: {
+    marginTop: 60,
+    fontSize: 20,
+    textAlign: "center",
+    color: "#fff"
   },
   userContainer: {
     flexDirection: "row",
