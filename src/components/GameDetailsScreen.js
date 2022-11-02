@@ -5,10 +5,13 @@ import {
   Image,
   StyleSheet,
   Text,
-  Pressable,
+  TouchableOpacity,
+  SafeAreaView
 } from "react-native";
 
 import { postGame, deleteGame } from "../apiCalls";
+
+import LoadingModal from "./LoadingModal";
 
 const GameDetailsScreen = ({
   game,
@@ -73,7 +76,7 @@ const GameDetailsScreen = ({
   };
 
   return game ? (
-    <ScrollView contentContainerStyle={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
           testID="gameDetailsScreenImg"
@@ -98,34 +101,34 @@ const GameDetailsScreen = ({
           </View>
         ))}
       </View>
-      <Pressable style={styles.closeModalBtn}>
+      <TouchableOpacity style={styles.closeModalBtn}>
         <Text
           style={styles.closeModalTxt}
           onPress={() => setModalVisible(false)}
         >
           Close
         </Text>
-      </Pressable>
+      </TouchableOpacity>
       <View style={styles.errorContainer}>
         {error && <Text style={styles.error}>{error}</Text>}
       </View>
       {!hasGame ? (
         <View style={styles.favoriteBtnContainer}>
-          <Pressable style={styles.favoriteBtn} onPress={addGameHandler}>
+          <TouchableOpacity style={styles.favoriteBtn} onPress={addGameHandler}>
             <Text style={styles.favoriteBtnText}>Favorite Game</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       ) : (
         <View style={styles.favoriteBtnContainer}>
-          <Pressable style={styles.favoriteBtn} onPress={removeGameHandler}>
+          <TouchableOpacity style={styles.favoriteBtn} onPress={removeGameHandler}>
             <Text style={styles.favoriteBtnText}>Remove Game</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       )}
       <Text style={styles.rawg}>Powered by RAWG</Text>
-    </ScrollView>
+    </SafeAreaView>
   ) : (
-    <Text>Loading...</Text>
+    <LoadingModal />
   );
 };
 
@@ -133,25 +136,24 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#201626",
     alignItems: "center",
-    minHeight: "100%",
+    justifyContent: "space-around",
+    flex: 1
   },
   imageContainer: {
     backgroundColor: "#352540",
     width: "90%",
-    height: "35%",
-    marginTop: 70,
+    flex: 2/3,
     borderRadius: 20,
     borderWidth: 1,
     borderColor: "#3AE456",
     shadowRadius: 5,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 60,
-    shadowColor: "#3AE456",
+    shadowColor: "#000",
   },
   titleContainer: {
     backgroundColor: "#393051",
     width: "90%",
-    marginTop: 20,
     alignItems: "center",
     borderRadius: 20,
     borderWidth: 1,
@@ -159,7 +161,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 40,
-    shadowColor: "#3AE456",
+    shadowColor: "#000",
   },
   title: {
     color: "#fff",
@@ -171,7 +173,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     width: "90%",
-    marginTop: 20,
   },
   genreView: {
     backgroundColor: "#5462A4",
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
     paddingRight: 8,
     paddingLeft: 8,
     borderRadius: 20,
-    shadowColor: "black",
+    shadowColor: "#000",
     shadowRadius: 5,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 60,
@@ -193,7 +194,6 @@ const styles = StyleSheet.create({
   consoleContainer: {
     backgroundColor: "#393051",
     width: "90%",
-    marginTop: 20,
     paddingTop: 10,
     paddingBottom: 10,
     paddingRight: 15,
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 40,
-    shadowColor: "#3AE456",
+    shadowColor: "#000",
   },
   consoleView: {
     backgroundColor: "#000",
@@ -232,7 +232,6 @@ const styles = StyleSheet.create({
     color: "red",
   },
   favoriteBtnContainer: {
-    marginTop: 5,
     height: "10%",
     justifyContent: "center",
     backgroundColor: "#201626",
@@ -245,13 +244,12 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 60,
-    shadowColor: "#3AE456",
+    shadowColor: "#000",
     borderWidth: 1,
     borderColor: "#3AE456",
   },
   closeModalBtn: {
     backgroundColor: "#3AE456",
-    marginTop: 30,
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 20,
@@ -270,12 +268,8 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   rawg: {
-    height: "5%",
-    marginTop: 10,
-    shadowRadius: 7,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
+    fontSize: 15,
+    color: "#555"
   },
 });
 
