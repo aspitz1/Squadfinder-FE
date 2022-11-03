@@ -56,6 +56,11 @@ const ProfileScreen = ({
           {games}
         </Swiper>
       </View>
+      {setModalVisible ? (
+        <TouchableOpacity style={styles.close} onPress={() => setModalVisible(false)}>
+          <Text style={styles.closeText}>Close</Text>
+        </TouchableOpacity>
+      ) : (
         <TouchableOpacity
           testID="editGamesBtn"
           style={styles.editButton}
@@ -64,6 +69,7 @@ const ProfileScreen = ({
         >
           <Text style={{ color: "#fff" }}>Edit My Games List</Text>
         </TouchableOpacity>
+      )}
       <Text style={styles.rawg}>Powered by RAWG</Text>
     </SafeAreaView>
   );

@@ -12,7 +12,6 @@ const genres = [
   "Casual",
   "Platformer",
   "Sports",
-  "Racing",
   "Simulation",
   "Massively Multiplayer",
   "Puzzle",

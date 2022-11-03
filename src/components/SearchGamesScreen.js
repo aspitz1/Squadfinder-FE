@@ -3,7 +3,7 @@ import { FlatList, TextInput } from "react-native-gesture-handler";
 import {
   StyleSheet,
   View,
-  Pressable,
+  TouchableOpacity,
   Image,
   Modal,
   Text,
@@ -116,7 +116,7 @@ const SearchGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
       <SelectDropdown
         data={genres}
         search={true}
-        searchPlaceHolder="Search..."
+        searchPlaceHolder="Genre..."
         buttonStyle={styles.selectListBox}
         buttonTextStyle={{ color: "#3AE456" }}
         rowStyle={{ backgroundColor: "#352540" }}
@@ -128,13 +128,13 @@ const SearchGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
         ref={dropdownRef}
         onSelect={(genre) => genreHandler(genre)}
       />
-      <Pressable
+      <TouchableOpacity
         testID="searchBtn"
         style={styles.searchButton}
         onPress={() => searchHandler()}
       >
         <Text style={{ fontSize: 20, color: "#3AE456" }}>Search</Text>
-      </Pressable>
+      </TouchableOpacity>
       {searching && <LoadingModal />}
       {showGames && displayedGames ? (
         displayedGames.length ? (
@@ -145,7 +145,7 @@ const SearchGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
               contentContainerStyle={{ alignItems: "center" }}
               renderItem={(itemData) => {
                 return (
-                  <Pressable
+                  <TouchableOpacity
                     title="User's Game"
                     style={styles.gameIcon}
                     onPress={() => iconClickHandler(itemData.item)}
@@ -161,7 +161,7 @@ const SearchGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
                       }}
                     ></Image>
                     <Text style={styles.gameTitle}>{itemData.item.name}</Text>
-                  </Pressable>
+                  </TouchableOpacity>
                 );
               }}
             ></FlatList>
@@ -176,13 +176,13 @@ const SearchGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
       ) : (
         <View style={{ flex: 5 / 6 }}></View>
       )}
-      <Pressable
+      <TouchableOpacity
         testID="clearResultsBtn"
         style={styles.clearButton}
         onPress={() => clearResults()}
       >
         <Text style={{ color: "#fff" }}>Clear Results</Text>
-      </Pressable>
+      </TouchableOpacity>
       <Text style={styles.rawg}>Powered by RAWG</Text>
     </View>
   );
@@ -196,15 +196,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   textInput: {
-    flex: 1 / 24,
     borderWidth: 1,
     width: 250,
-    height: 30,
+    height: 35,
     color: "white",
-    shadowRadius: 1,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
     borderRadius: 5,
     borderColor: "#3AE456",
     padding: 5,
@@ -222,54 +217,34 @@ const styles = StyleSheet.create({
     width: 170,
     justifyContent: "center",
     textAlign: "center",
-    shadowRadius: 3,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
-    borderWidth: 1,
-    borderColor: "#3AE456",
     borderRadius: 20,
     margin: 10,
   },
   gameTitle: {
     position: "absolute",
-    bottom: 10,
+    bottom: 20,
     width: "100%",
     textAlign: "center",
     color: "#fff",
     fontSize: 15,
-    borderWidth: 1,
-    borderRadius: 10,
     backgroundColor: "rgba(0,0,0,.6)",
     overflow: "hidden",
   },
   selectListBox: {
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
     borderWidth: 1,
     borderColor: "#3AE456",
-    borderRadius: 20,
+    borderRadius: 5,
     backgroundColor: "#393051",
     height: 35,
+    width: 250,
     marginTop: 5,
   },
   selectListDropdown: {
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
-    borderWidth: 2,
     backgroundColor: "#393051",
   },
   searchButton: {
-    width: 100,
+    width: 150,
     height: 30,
-    shadowRadius: 3,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
     borderWidth: 1,
     borderColor: "#3AE456",
     borderRadius: 20,
@@ -278,12 +253,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   clearButton: {
-    width: 100,
-    height: 30,
-    shadowRadius: 3,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
+    width: 150,
+    padding: 8,
     borderWidth: 1,
     borderColor: "#3AE456",
     borderRadius: 20,
@@ -292,11 +263,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   rawg: {
-    margin: 10,
-    shadowRadius: 7,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
+    fontSize: 15,
+    color: "#555"
   },
   noResults: {
     marginTop: 150,
