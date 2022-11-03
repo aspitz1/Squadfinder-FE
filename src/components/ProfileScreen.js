@@ -5,7 +5,7 @@ import {
   Text,
   View,
   Image,
-  Pressable,
+  TouchableOpacity,
   SafeAreaView,
 } from "react-native";
 import Swiper from "react-native-swiper";
@@ -56,20 +56,14 @@ const ProfileScreen = ({
           {games}
         </Swiper>
       </View>
-      {setModalVisible ? (
-        <Pressable style={styles.close} onPress={() => setModalVisible(false)}>
-          <Text style={styles.closeText}>Close</Text>
-        </Pressable>
-      ) : (
-        <Pressable
+        <TouchableOpacity
           testID="editGamesBtn"
           style={styles.editButton}
           title="Edit My Games"
           onPress={() => navigation.navigate("My Games")}
         >
           <Text style={{ color: "#fff" }}>Edit My Games List</Text>
-        </Pressable>
-      )}
+        </TouchableOpacity>
       <Text style={styles.rawg}>Powered by RAWG</Text>
     </SafeAreaView>
   );
@@ -80,15 +74,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#201626",
     alignItems: "center",
+    justifyContent: "space-between"
   },
   header: {
-    height: "8%",
     width: "100%",
-    fontSize: 35,
+    fontSize: 27,
     backgroundColor: "#483F6D",
     color: "#3AE456",
     textAlign: "center",
-    marginBottom: 20,
     padding: 10,
   },
   info: {
@@ -97,35 +90,29 @@ const styles = StyleSheet.create({
     width: "90%",
     alignItems: "center",
     justifyContent: "center",
-    shadowRadius: 3,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
     borderWidth: 1,
     borderColor: "#3AE456",
     borderRadius: 50,
-    marginBottom: 10,
+    shadowRadius: 3,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 60,
+    shadowColor: "#000",
   },
   userInfo: {
     color: "#fff",
-    marginTop: 5,
     fontSize: 20,
   },
   swiper: {
-    height: "55%",
+    flex: 2/3
   },
   swiperSlide: {
     height: "95%",
     width: "80%",
-    margin: 10,
     marginLeft: "auto",
     marginRight: "auto",
     borderWidth: 1,
     borderColor: "#3AE456",
     borderRadius: 20,
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
     shadowColor: "#3AE456",
   },
   gameTitle: {
@@ -135,8 +122,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#fff",
     fontSize: 20,
-    borderWidth: 1,
-    borderRadius: 10,
     backgroundColor: "rgba(0,0,0,.6)",
     overflow: "hidden",
   },
@@ -148,7 +133,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 60,
-    shadowColor: "#3AE456",
+    shadowColor: "#000",
     borderWidth: 1,
     borderColor: "#3AE456",
     borderRadius: 20,
@@ -156,12 +141,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   rawg: {
-    height: "5%",
     marginTop: 20,
-    shadowRadius: 7,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
+    color: "#555"
   },
   errorContainer: {
     backgroundColor: "#201626",
