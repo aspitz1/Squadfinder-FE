@@ -1,8 +1,8 @@
-import React, { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef } from "react";
 import {
   View,
   TouchableOpacity,
-  Touchable,
+  Pressable,
   Text,
   StyleSheet,
   Platform,
@@ -15,7 +15,6 @@ import { useNavigation } from "@react-navigation/native";
 import { useFocusEffect } from "@react-navigation/native";
 
 import { postSquad } from "../apiCalls";
-import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 const FormSquadScreen = ({ allUsers, userGames, userID }) => {
   const [date, setDate] = useState(new Date());
