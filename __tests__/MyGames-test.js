@@ -1,17 +1,17 @@
 import { render, screen } from "@testing-library/react-native";
 
-import MyGamesScreen from "../src/components/MyGamesScreen";
+import GamesScreen from "../src/components/GamesScreen";
 import data from "./mock-props-data/GameDetailsScreen-mock-data.json";
 
-describe("<MyGamesScreen />", () => {
+describe("<GamesScreen />", () => {
   it("Should be able to see a text input for filtering through My Games", () => {
-    render(<MyGamesScreen userGames={data.userGames} userID={data.userID} />);
+    render(<GamesScreen userGames={data.userGames} userID={data.userID} />);
 
     expect(screen.getByTestId("search-bar")).toBeVisible();
   });
 
   it("Should render game icons for each game the user has favorited", () => {
-    render(<MyGamesScreen userGames={data.userGames} userID={data.userID} />);
+    render(<GamesScreen userGames={data.userGames} userID={data.userID} />);
 
     expect(screen.getByTestId("users-game-icon-1")).toBeVisible();
     expect(screen.getByTestId("users-game-icon-33")).toBeVisible();
@@ -20,7 +20,7 @@ describe("<MyGamesScreen />", () => {
   });
 
   it("Should display the title of each game on each icon", () => {
-    render(<MyGamesScreen userGames={data.userGames} userID={data.userID} />);
+    render(<GamesScreen userGames={data.userGames} userID={data.userID} />);
 
     expect(screen.getByText("Halo Infinite")).toBeVisible();
     expect(screen.getByText("Grand Theft Auto V")).toBeVisible();
@@ -29,7 +29,7 @@ describe("<MyGamesScreen />", () => {
   });
 
   it("Should display a game image on each icon", () => {
-    render(<MyGamesScreen userGames={data.userGames} userID={data.userID} />);
+    render(<GamesScreen userGames={data.userGames} userID={data.userID} />);
 
     expect(screen.getByTestId("users-game-icon-1")).toHaveProp("source", {
       uri: "https://media.rawg.io/media/games/e1f/e1ffbeb1bac25b19749ad285ca29e158.jpg",

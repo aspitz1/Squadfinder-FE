@@ -1184,8 +1184,8 @@
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
     "hash": "857aa630611941bb73fc69d548bf4273447e34a5"
   },
-  "/Users/aspitz/frontend/src/components/MyGamesScreen.js": {
-    "path": "/Users/aspitz/frontend/src/components/MyGamesScreen.js",
+  "/Users/aspitz/frontend/src/components/GamesScreen.js": {
+    "path": "/Users/aspitz/frontend/src/components/GamesScreen.js",
     "statementMap": {
       "0": {
         "start": { "line": 8, "column": 16 },

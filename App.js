@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import ProfileScreen from "./src/components/ProfileScreen";
-import MyGamesScreen from "./src/components/MyGamesScreen";
+import GamesScreen from "./src/components/GamesScreen";
 import SearchGamesScreen from "./src/components/SearchGamesScreen";
 import FormSquadScreen from "./src/components/FormSquadScreen";
 import MySquadsScreen from "./src/components/MySquadsScreen";
@@ -110,7 +110,7 @@ const App = () => {
         </Drawer.Screen>
         <Drawer.Screen name="My Games">
           {() => (
-            <MyGamesScreen
+            <GamesScreen
               userGames={userGames}
               addGame={addGame}
               removeGame={removeGame}

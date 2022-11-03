@@ -228,7 +228,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src/components/MyGamesScreen.js
+SF:src/components/GamesScreen.js
 FN:8,(anonymous_0)
 FN:14,(anonymous_1)
 FN:17,(anonymous_2)

@@ -66,7 +66,7 @@ _The iOS simulator requires Xcode. Xcode can only be run on macOS._
 
 - User can remove games from their favorited games.
 
-![User can remove games from their favorited games](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/MyGamesScreen-RemoveGame.gif)
+![User can remove games from their favorited games](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/GamesScreen-RemoveGame.gif)
 
 - User can search for specific games.
 

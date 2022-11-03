@@ -439,10 +439,10 @@ import {
 } from "react-native";
 import Swiper from "react-native-swiper";
 &nbsp;
-const ProfileScreen = ({ user, MyGamesScreen, error }) =&gt; {
+const ProfileScreen = ({ user, GamesScreen, error }) =&gt; {
   const navigation = useNavigation();
 &nbsp;
-  let games = MyGamesScreen.map((game) =&gt; {
+  let games = GamesScreen.map((game) =&gt; {
     return (
       &lt;View style={styles.swiperSlide} key={game.id + new Date()}&gt;
         &lt;Image

@@ -3,7 +3,7 @@ import { FlatList, TextInput } from "react-native-gesture-handler";
 import {
   StyleSheet,
   View,
-  Pressable,
+  TouchableOpacity,
   Image,
   Modal,
   Text,
@@ -15,7 +15,7 @@ import { sortGames } from "../utility-functions";
 import LoadingModal from "./LoadingModal";
 import GameDetailsScreen from "./GameDetailsScreen";
 
-const MyGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
+const GamesScreen = ({ userGames, addGame, removeGame, userID }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null);
   const [searchInput, setSearchInput] = useState("");
@@ -82,7 +82,7 @@ const MyGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
           contentContainerStyle={{ alignItems: "center", marginTop: 10 }}
           renderItem={(itemData) => {
             return (
-              <Pressable
+              <TouchableOpacity
                 title="User's Game"
                 style={styles.gameIcon}
                 onPress={() => iconClickHandler(itemData.item)}
@@ -99,7 +99,7 @@ const MyGamesScreen = ({ userGames, addGame, removeGame, userID }) => {
                   }}
                 ></Image>
                 <Text style={styles.gameTitle}>{itemData.item.gameTitle}</Text>
-              </Pressable>
+              </TouchableOpacity>
             );
           }}
         ></FlatList>
@@ -158,4 +158,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyGamesScreen;
+export default GamesScreen;

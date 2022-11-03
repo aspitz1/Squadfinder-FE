@@ -3,10 +3,11 @@ import { useFocusEffect } from "@react-navigation/native";
 import {
   StyleSheet,
   View,
-  Pressable,
+  TouchableOpacity,
   Text,
   FlatList,
   Modal,
+  SafeAreaView
 } from "react-native";
 import ProfileScreen from "./ProfileScreen";
 
@@ -115,11 +116,11 @@ const MySquadsScreen = ({ userID }) => {
   };
 
   return error && !userSquads.length ? (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.error}>{error}</Text>
-    </View>
+    </SafeAreaView>
   ) : (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Modal
         animationType="slide"
         transparent={true}
@@ -153,13 +154,14 @@ const MySquadsScreen = ({ userID }) => {
                   counter++;
                   assignColor();
                   return (
-                    <Pressable
+                    <TouchableOpacity
                       onPress={() => memberIconClickHandler(memberData.item.id)}
+                      style={{ backgroundColor: color, borderRadius: 20 }}
                     >
-                      <Text style={[styles.icon, { borderColor: color }]}>
+                      <Text style={styles.icon}>
                         {memberData.item.gamertag[0]}
                       </Text>
-                    </Pressable>
+                    </TouchableOpacity>
                   );
                 }}
               />
@@ -176,24 +178,24 @@ const MySquadsScreen = ({ userID }) => {
                     {squadData.item.competitive}
                   </Text>
                 </View>
-                <Pressable
+                <TouchableOpacity
                   onPress={() => deleteSquadHandler(userID, squadData.item.id)}
                   style={styles.notGoing}
                 >
                   <Text style={styles.notGoingText}>Not Going</Text>
-                </Pressable>
+                </TouchableOpacity>
               </View>
             </View>
           );
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: "100%",
+    flex: 1,
     backgroundColor: "#201626",
     alignItems: "center",
   },
@@ -218,16 +220,10 @@ const styles = StyleSheet.create({
   },
   squadCard: {
     width: "95%",
+    marginTop: 15,
     alignItems: "center",
     marginLeft: 7,
-    marginTop: 30,
     backgroundColor: "#352540",
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
-    borderWidth: 1,
-    borderColor: "#3AE456",
     borderRadius: 20,
   },
   memberIcons: {
@@ -241,8 +237,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#fff",
     fontSize: 30,
-    borderWidth: 2,
-    borderRadius: 23,
   },
   lowerContainer: {
     flexDirection: "row",
@@ -272,10 +266,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#393051",
-    shadowRadius: 3,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 60,
-    shadowColor: "#3AE456",
     borderWidth: 1,
     borderColor: "#3AE456",
     borderRadius: 20,

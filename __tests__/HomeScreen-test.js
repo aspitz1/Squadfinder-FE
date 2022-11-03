@@ -10,7 +10,7 @@ describe("<ProfileScreen />", () => {
       <NavigationContainer>
         <ProfileScreen
           user={data.user}
-          MyGamesScreen={data.userGames}
+          GamesScreen={data.userGames}
           error={data.noError}
         />
       </NavigationContainer>
@@ -23,7 +23,7 @@ describe("<ProfileScreen />", () => {
       <NavigationContainer>
         <ProfileScreen
           user={data.user}
-          MyGamesScreen={data.userGames}
+          GamesScreen={data.userGames}
           error={data.noError}
         />
       </NavigationContainer>
@@ -36,7 +36,7 @@ describe("<ProfileScreen />", () => {
       <NavigationContainer>
         <ProfileScreen
           user={data.user}
-          MyGamesScreen={data.userGames}
+          GamesScreen={data.userGames}
           error={data.noError}
         />
       </NavigationContainer>
@@ -49,7 +49,7 @@ describe("<ProfileScreen />", () => {
       <NavigationContainer>
         <ProfileScreen
           user={data.user}
-          MyGamesScreen={data.userGames}
+          GamesScreen={data.userGames}
           error={data.noError}
         />
       </NavigationContainer>
@@ -65,7 +65,7 @@ describe("<ProfileScreen />", () => {
       <NavigationContainer>
         <ProfileScreen
           user={data.user}
-          MyGamesScreen={data.userGames}
+          GamesScreen={data.userGames}
           error={data.noError}
         />
       </NavigationContainer>
@@ -78,7 +78,7 @@ describe("<ProfileScreen />", () => {
       <NavigationContainer>
         <ProfileScreen
           user={data.user}
-          MyGamesScreen={data.userGames}
+          GamesScreen={data.userGames}
           error={data.noError}
         />
       </NavigationContainer>
@@ -92,7 +92,7 @@ describe("<ProfileScreen />", () => {
       <NavigationContainer>
         <ProfileScreen
           user={data.user}
-          MyGamesScreen={data.userGames}
+          GamesScreen={data.userGames}
           error={data.noError}
         />
       </NavigationContainer>
@@ -105,7 +105,7 @@ describe("<ProfileScreen />", () => {
       <NavigationContainer>
         <ProfileScreen
           user={data.user}
-          MyGamesScreen={data.userGames}
+          GamesScreen={data.userGames}
           error={data.error}
         />
       </NavigationContainer>
