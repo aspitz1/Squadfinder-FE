@@ -96,9 +96,6 @@ _The iOS simulator requires Xcode. Xcode can only be run on macOS._
 - [React Native Docs](https://reactnative.dev/docs/getting-started)
 - [Expo Docs](https://expo.dev/)
 - [MDN](http://developer.mozilla.org/en-US/)
-- [YouTube](https://www.youtube.com/)
-- [StackOverflow](https://www.stackoverflow.com/)
-- [W3Schools](https://www.w3schools.com/)
 
 ## Contributors
 
