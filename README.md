@@ -60,33 +60,7 @@ _The iOS simulator requires Xcode. Xcode can only be run on macOS._
 
 ## Application in Action
 
-- User can select a profile and visit the ProfileScreen.
-
-![User can select a profile and visit the ProfileScreen](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/SelectProfile-ProfileScreen.gif)
-
-- User can remove games from their favorited games.
-
-![User can remove games from their favorited games](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/GamesScreen-RemoveGame.gif)
-
-- User can search for specific games.
-
-![User can search for specific games](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/SearchGameDetails.gif)
-
-- User can add games to a list of their favorites.
-
-![User can add games to a list of their favorites](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/AddGame.gif)
-
-- User can form a squad by first choosing what game they want to squad-up to and whether they are playing casually or competitively. Choosing a game determines the possible users you can invite to squad-up with. If a user has the chosen game in their favorites list, they can be invited to the squad-up event.
-
-![User can form a squad by first choosing what game they want to squad-up to and whether they are playing casually or competitively](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/FormSquad1.gif)
-
-- Then the User chooses a date and time for the squad-up event.
-
-![Then the User chooses a date and time for the squad-up event](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/FormSquad2.gif)
-
-- Then the User can invite a maximum of 3 other users to the squad event. Once a user has been invited to a squad event, that event appears in each squad members "MySquadsScreen" section. If a user chooses, they can tap the "Not Going" button and end their association with that squad-up event.
-
-![Then the User can invite a maximum of 3 other users to the squad event. Once a user has been invited to a squad event, that event appears in each squad members "MySquadsScreen" section. If a user chooses, they can tap the "Not Going" button and end their association with that squad-up event.](https://github.com/Squadfinder/frontend/blob/887e68459b20a395614f0dbc02f0e1583cf1d960/assets/GIFS/FormSquad3-RemoveSquad.gif)
+**🚧 UNDER CONSTRUCTION 🚧**
 
 ## Technologies
 
